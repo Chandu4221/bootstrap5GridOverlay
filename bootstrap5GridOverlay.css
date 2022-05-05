@@ -1,0 +1,128 @@
+.bootstrapGridToggle {
+  --togglerHeight: 2rem;
+  --togglerWidth: calc(var(--togglerHeight) * 2);
+  --button-color: #22c55e;
+  --inactive-color: #a1a1aa;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: var(--togglerHeight);
+  width: var(--togglerWidth);
+  background-color: #ffffff;
+  border-radius: calc(var(--togglerHeight) * 50);
+  border: 2px solid #404040;
+  box-sizing: border-box;
+  box-shadow: inset calc(var(--togglerHeight) * -1) 0 0 2px
+      var(--inactive-color),
+    inset 0 0 0 2px var(--inactive-color);
+  transition: box-shadow ease 0.25s;
+  cursor: pointer;
+  position: fixed;
+  top: 56px;
+  right: 8px;
+  margin: auto;
+}
+
+.bootstrapGridToggle:checked {
+  box-shadow: inset var(--togglerHeight) 0 0 2px var(--button-color),
+    inset 0 0 0 2px var(--button-color);
+}
+.bootstrapGridToggle:checked ~ .enable-grid {
+  display: flex;
+}
+
+.enable-grid {
+  --gutterSize: 0.75rem;
+  --gridColor: rgba(34, 197, 94, 0.35);
+  --gutterColor: rgba(134, 239, 172, 0.35);
+  --gridOpacity: 1;
+
+  margin: auto;
+  display: none;
+  width: var(--gridWidth);
+  height: 100vh;
+  position: fixed;
+  z-index: 50000;
+  left: 0;
+  right: 0;
+  opacity: var(--gridOpacity);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--gutterColor) 0px,
+    var(--gutterColor) var(--gutterSize),
+    var(--gridColor) var(--gutterSize),
+    var(--gridColor) calc(var(--gridSize) + var(--gutterSize)),
+    var(--gutterColor) calc(var(--gridSize) + var(--gutterSize)),
+    var(--gutterColor) calc(var(--gridSize) + (var(--gutterSize) * 2))
+  );
+}
+.enable-grid::before {
+  content: var(--mq);
+  position: fixed;
+  top: 56px;
+  left: 8px;
+  margin: auto;
+  font-weight: bold;
+  font-size: 2rem;
+  background: #000;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.5rem;
+  letter-spacing: 2px;
+  font-family: monospace;
+}
+@media (min-width: 576px) {
+  .enable-grid {
+    --viewportWidth: 540px;
+    --noOfGrids: 3;
+    --gridWidth: 540px;
+    --mq: "sm";
+    --gridSize: calc(
+      (var(--viewportWidth) / var(--noOfGrids) - (var(--gutterSize) * 2))
+    );
+  }
+}
+@media (min-width: 768px) {
+  .enable-grid {
+    --viewportWidth: 720px;
+    --noOfGrids: 6;
+    --gridWidth: 720px;
+    --mq: "md";
+    --gridSize: calc(
+      (var(--viewportWidth) / var(--noOfGrids) - (var(--gutterSize) * 2))
+    );
+  }
+}
+@media (min-width: 992px) {
+  .enable-grid {
+    --viewportWidth: 960px;
+    --noOfGrids: 12;
+    --gridWidth: 960px;
+    --mq: "lg";
+    --gridSize: calc(
+      (var(--viewportWidth) / var(--noOfGrids) - (var(--gutterSize) * 2))
+    );
+  }
+}
+@media (min-width: 1140px) {
+  .enable-grid {
+    --viewportWidth: 1140px;
+    --noOfGrids: 12;
+    --gridWidth: 1140px;
+    --mq: "xl";
+    --gridSize: calc(
+      (var(--viewportWidth) / var(--noOfGrids) - (var(--gutterSize) * 2))
+    );
+  }
+}
+@media (min-width: 1320px) {
+  .enable-grid {
+    --viewportWidth: 1320px;
+    --noOfGrids: 12;
+    --gridWidth: 1320px;
+    --mq: "xxl";
+    --gridSize: calc(
+      (var(--viewportWidth) / var(--noOfGrids) - (var(--gutterSize) * 2))
+    );
+  }
+}
